@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf2f1b45725b80e4f99cd62dc870ecd3, type: 3}
-  m_Name: StoneHarvester
+  m_Name: WoodHarvester
   m_EditorClassIdentifier: 
-  nameString: Stone Harvester
-  prefab: {fileID: 7743182389202602155, guid: be030598a184fa34fa454f87ff468260, type: 3}
+  nameString: Wood Harvester
+  prefab: {fileID: 7743182389202602155, guid: e5665e57c64e06a45a72a22c0379b3cd, type: 3}
+  resourceGeneratorData:
+    timerMax: 0.5
+    resourceType: {fileID: 11400000, guid: 90703b5d07bb9e24f91e12d962803329, type: 2}
