@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,9 +5,11 @@ using UnityEngine.UI;
 public class BuildingTypeSelectUI : MonoBehaviour
 {
     [SerializeField] private Sprite arrowSprite;
+    [SerializeField] private List<BuildingTypeSO> ignoreBuildingTypeList;
     
     private Dictionary<BuildingTypeSO, Transform> _buttonTransformDictionary;
     private Transform _arrowButton;
+    
     private void Awake()
     {
         var buttonTemplate = transform.Find("ButtonTemplate");
@@ -33,6 +34,9 @@ public class BuildingTypeSelectUI : MonoBehaviour
         
         foreach (var buildingType in buildingTypeList.list)
         {
+            if (ignoreBuildingTypeList.Contains(buildingType))
+                continue;
+            
             var buttonTransform = Instantiate(buttonTemplate, transform);
             buttonTransform.gameObject.SetActive(true);
             buttonTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetAmount * index, 0);
