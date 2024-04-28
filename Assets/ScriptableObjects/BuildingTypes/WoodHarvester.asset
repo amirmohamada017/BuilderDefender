@@ -15,8 +15,8 @@ MonoBehaviour:
   nameString: Wood Harvester
   prefab: {fileID: 7743182389202602155, guid: e5665e57c64e06a45a72a22c0379b3cd, type: 3}
   resourceGeneratorData:
-    timerMax: 0.5
+    timerMax: 1
     resourceType: {fileID: 11400000, guid: 90703b5d07bb9e24f91e12d962803329, type: 2}
     resourceDetectionRadius: 7
-    maxResourceAmount: 7
+    maxResourceAmount: 8
   sprite: {fileID: 21300000, guid: 793ca27a5a3378149aaa12abe85933f4, type: 3}
