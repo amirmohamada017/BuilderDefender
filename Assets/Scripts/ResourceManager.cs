@@ -19,7 +19,7 @@ public class ResourceManager : MonoBehaviour
 
         foreach (var resourceType in resourceTypeList)
         {
-            _resourceAmountDictionary.Add(resourceType, 0);
+            _resourceAmountDictionary.Add(resourceType, 200);
         }
     }
     
@@ -33,5 +33,28 @@ public class ResourceManager : MonoBehaviour
     public int GetResourceAmount(ResourceTypeSO resourceType)
     {
         return _resourceAmountDictionary[resourceType];
+    }
+    
+    private bool CanAfford(ResourceTypeSO resourceType, int amount)
+    {
+        return GetResourceAmount(resourceType) >= amount;
+    }
+
+    public bool CanAfford(ResourceAmount[] resourceAmounts)
+    {
+        foreach (var resourceAmount in resourceAmounts)
+        {
+            if (!CanAfford(resourceAmount.resourceType, resourceAmount.amount))
+                return false;
+        }
+        return true;
+    }
+    
+    public void SpendResources(ResourceAmount[] resourceAmounts)
+    {
+        foreach (var resourceAmount in resourceAmounts)
+        {
+            AddResource(resourceAmount.resourceType, -resourceAmount.amount);
+        }
     }
 }
