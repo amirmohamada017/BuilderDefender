@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,9 @@ public class BuildingTypeSelectUI : MonoBehaviour
 {
     [SerializeField] private Sprite arrowSprite;
     [SerializeField] private List<BuildingTypeSO> ignoreBuildingTypeList;
+    [SerializeField] private Image icon;
+    [SerializeField] private TextMeshProUGUI costAmount;
+    [SerializeField] private Transform constructionCostTag;
     
     private Dictionary<BuildingTypeSO, Transform> _buttonTransformDictionary;
     private Transform _arrowButton;
@@ -25,6 +29,7 @@ public class BuildingTypeSelectUI : MonoBehaviour
         _arrowButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetAmount * index, 0);
         _arrowButton.Find("Image").GetComponent<Image>().sprite = arrowSprite;
         _arrowButton.Find("Image").GetComponent<RectTransform>().sizeDelta = new Vector2(0, -40f);
+        _arrowButton.Find("ConstructionCostTag").gameObject.SetActive(false);
         _arrowButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             BuildingManager.Instance.SetActiveBuildingType(null);
@@ -45,6 +50,10 @@ public class BuildingTypeSelectUI : MonoBehaviour
             {
                 BuildingManager.Instance.SetActiveBuildingType(buildingType);
             });
+            buttonTransform.Find("ConstructionCostTag").Find("CostAmount").GetComponent<TextMeshProUGUI>().text =
+                buildingType.constructionResourceCosts[0].amount.ToString();
+            buttonTransform.Find("ConstructionCostTag").Find("Icon").GetComponent<Image>().sprite =
+                buildingType.constructionResourceCosts[0].resourceType.sprite;
             
             _buttonTransformDictionary.Add(buildingType, buttonTransform);
             

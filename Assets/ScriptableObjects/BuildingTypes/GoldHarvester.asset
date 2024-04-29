@@ -23,5 +23,3 @@ MonoBehaviour:
   constructionResourceCosts:
   - resourceType: {fileID: 11400000, guid: 90703b5d07bb9e24f91e12d962803329, type: 2}
     amount: 200
-  - resourceType: {fileID: 11400000, guid: dc9aed76bf2eb1d46899fec77456f475, type: 2}
-    amount: 100
