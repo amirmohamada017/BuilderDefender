@@ -60,7 +60,7 @@ public class BuildingManager : MonoBehaviour
         return _activeBuildingType;
     }
 
-    private bool CanSpawnBuilding(BuildingTypeSO buildingType, Vector3 position)
+    public bool CanSpawnBuilding(BuildingTypeSO buildingType, Vector3 position)
     {
         var boxCollider = buildingType.prefab.GetComponent<BoxCollider2D>();
         var overlapColliders = Physics2D.OverlapBoxAll(position + (Vector3)boxCollider.offset, boxCollider.size, 0f);

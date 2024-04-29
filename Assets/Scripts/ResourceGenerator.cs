@@ -21,6 +21,7 @@ public class ResourceGenerator : MonoBehaviour
     private ResourceGeneratorData _resourceGeneratorData;
     private float _timer;
     private float _timerMax;
+    private int _resourceAmount;
 
     private void Awake()
     {
@@ -37,8 +38,9 @@ public class ResourceGenerator : MonoBehaviour
             enabled = false;
         else
         {
-            _timerMax = (_resourceGeneratorData.timerMax / 2f) + _resourceGeneratorData.timerMax *
-                (1 - (float)nearbyResourceAmount / _resourceGeneratorData.maxResourceAmount);
+            _resourceAmount = nearbyResourceAmount;
+            _timerMax = _resourceGeneratorData.timerMax / _resourceAmount;
+            _timer = _timerMax;
         }
     }
 

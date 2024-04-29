@@ -21,6 +21,15 @@ public class BuildingGhost : MonoBehaviour
     private void Update()
     {
         transform.position = UtilsClass.GetMouseWorldPosition();
+
+        if (_spriteGameObject.activeSelf == true)
+        {
+            _spriteGameObject.GetComponent<SpriteRenderer>().color =
+                BuildingManager.Instance.CanSpawnBuilding(BuildingManager.Instance.GetActiveBuildingType(),
+                    UtilsClass.GetMouseWorldPosition())
+                    ? new Color(255, 255, 255, 0.7f)
+                    : new Color(255, 255, 255, 0.3f);
+        }
     }
 
     private void BuildingManager_OnActiveBuildingTypeChanged(object sender,
