@@ -12,6 +12,8 @@ public class BuildingManager : MonoBehaviour
     {
         public BuildingTypeSO ActiveBuildingType;
     }
+
+    [SerializeField] private Building hqBuilding;
     
     private BuildingTypeSO _activeBuildingType;
     private BuildingTypeListSO _buildingTypeList;
@@ -65,5 +67,10 @@ public class BuildingManager : MonoBehaviour
         var boxCollider = buildingType.prefab.GetComponent<BoxCollider2D>();
         var overlapColliders = Physics2D.OverlapBoxAll(position + (Vector3)boxCollider.offset, boxCollider.size, 0f);
         return overlapColliders.Length == 0;
+    }
+    
+    public Building GetHqBuilding()
+    {
+        return hqBuilding;
     }
 }
