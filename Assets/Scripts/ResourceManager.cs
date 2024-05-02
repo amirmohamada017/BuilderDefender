@@ -8,6 +8,8 @@ public class ResourceManager : MonoBehaviour
     
     public event EventHandler OnResourceAmountChanged; 
     
+    [SerializeField] private ResourceAmount[] startingResources;
+    
     private Dictionary<ResourceTypeSO, int> _resourceAmountDictionary;
 
     private void Awake()
@@ -19,7 +21,12 @@ public class ResourceManager : MonoBehaviour
 
         foreach (var resourceType in resourceTypeList)
         {
-            _resourceAmountDictionary.Add(resourceType, 200);
+            _resourceAmountDictionary.Add(resourceType, 0);
+        }
+
+        foreach (var resource in startingResources)
+        {
+            AddResource(resource.resourceType, resource.amount);
         }
     }
     
@@ -55,6 +62,14 @@ public class ResourceManager : MonoBehaviour
         foreach (var resourceAmount in resourceAmounts)
         {
             AddResource(resourceAmount.resourceType, -resourceAmount.amount);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Enemy.Create(UtilsClass.GetMouseWorldPosition());
         }
     }
 }

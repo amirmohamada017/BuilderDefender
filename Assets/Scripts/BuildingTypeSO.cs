@@ -8,4 +8,5 @@ public class BuildingTypeSO : ScriptableObject
     public ResourceGeneratorData resourceGeneratorData;
     public Sprite sprite;
     public ResourceAmount[] constructionResourceCosts;
+    public bool hasResourceGenerator;
 }

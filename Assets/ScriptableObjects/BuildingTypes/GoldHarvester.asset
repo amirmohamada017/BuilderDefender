@@ -23,3 +23,4 @@ MonoBehaviour:
   constructionResourceCosts:
   - resourceType: {fileID: 11400000, guid: 90703b5d07bb9e24f91e12d962803329, type: 2}
     amount: 200
+  hasResourceGenerator: 1

@@ -22,7 +22,7 @@ public class BuildingGhost : MonoBehaviour
     {
         transform.position = UtilsClass.GetMouseWorldPosition();
 
-        if (_spriteGameObject.activeSelf == true)
+        if (_spriteGameObject.activeSelf)
         {
             _spriteGameObject.GetComponent<SpriteRenderer>().color =
                 BuildingManager.Instance.CanSpawnBuilding(BuildingManager.Instance.GetActiveBuildingType(),
@@ -43,7 +43,10 @@ public class BuildingGhost : MonoBehaviour
         else
         {
             Show(e.ActiveBuildingType.sprite);
-            _resourceNearbyOverlay.Show(e.ActiveBuildingType.resourceGeneratorData);
+            if (e.ActiveBuildingType.hasResourceGenerator)
+                _resourceNearbyOverlay.Show(e.ActiveBuildingType.resourceGeneratorData);
+            else
+                _resourceNearbyOverlay.Hide();
         }
     }
 

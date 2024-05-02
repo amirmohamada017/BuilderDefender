@@ -6,18 +6,24 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private const float LookForTargetTimerMax = .2f;
     private float _lookForTargetTimer;
+    private HealthSystem _healthSystem;
 
     public static Enemy Create(Vector3 position)
     {
         var enemyPrefab = Resources.Load<Enemy>(nameof(Enemy));
         var instance = Instantiate(enemyPrefab, position, Quaternion.identity);
-        return instance;
+        
+        var enemy = instance.GetComponent<Enemy>();
+        return enemy;
     }
     private void Start()
     {
         _targetTransform = BuildingManager.Instance.GetHqBuilding().transform;
         _rigidbody2D = GetComponent<Rigidbody2D>();
-
+        _healthSystem = GetComponent<HealthSystem>();
+        
+        _healthSystem.OnDied += HealthSystem_OnDied;
+        
         _lookForTargetTimer = Random.Range(0f, LookForTargetTimerMax);
     }
 
@@ -84,5 +90,10 @@ public class Enemy : MonoBehaviour
         
         if (_targetTransform == null)
             _targetTransform = BuildingManager.Instance.GetHqBuilding().transform;
+    }
+    
+    private void HealthSystem_OnDied(object sender, System.EventArgs e)
+    {
+        Destroy(gameObject);
     }
 }
